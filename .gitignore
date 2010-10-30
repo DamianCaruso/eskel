@@ -1,3 +1,6 @@
+.bundle
+.redcar
+.DS_Store
 /config/settings.yml
 /config/redis/development.conf
 /config/redis/test.conf
