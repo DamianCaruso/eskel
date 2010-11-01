@@ -2,10 +2,8 @@ ENV['RACK_ENV'] = 'test'
 
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "init"))
 
+require "rspec"
 require "rack/test"
-require "contest"
-require "override"
-require "quietbacktrace"
 
 begin
   puts "Connected to Redis #{Ohm.redis.info[:redis_version]} on #{monk_settings(:redis)[:host]}:#{monk_settings(:redis)[:port]}, database #{monk_settings(:redis)[:db]}."
@@ -27,16 +25,26 @@ rescue Errno::ECONNREFUSED
   exit 1
 end
 
-class Test::Unit::TestCase
-  include Rack::Test::Methods
+Dir["spec/support/**/*.rb"].each {|f| require f}
 
-  def setup
-    # Uncomment if you want to reset the database
-    # before each test.
-    # Ohm.flush
+module Monk
+  module Test
+    module Methods
+      def setup
+        # Uncomment if you want to reset the database
+        # before each test.
+        # Ohm.flush
+      end
+  
+      def app
+        Main.new
+      end
+    end
   end
+end
 
-  def app
-    Main.new
-  end
+RSpec.configure do |config|
+  config.include Rack::Test::Methods
+  config.include Monk::Test::Methods
+  config.mock_with :rspec
 end

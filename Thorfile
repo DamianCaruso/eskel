@@ -4,26 +4,8 @@ class Monk < Thor
   desc "test", "Run all tests"
   def test
     verify_config(:test)
-
-    $:.unshift File.join(File.dirname(__FILE__), "test")
-
-    Dir['test/**/*_test.rb'].each do |file|
-      load file unless file =~ /^-/
-    end
-  end
-
-  desc "stories", "Run user stories."
-  method_option :pdf, :type => :boolean
-  def stories
-    $:.unshift(Dir.pwd, "test")
-
-    ARGV << "-r"
-    ARGV << (options[:pdf] ? "stories-pdf" : "stories")
-    ARGV.delete("--pdf")
-
-    Dir["test/stories/*_test.rb"].each do |file|
-      load file
-    end
+    files_to_run = Dir['./spec/**/*_spec.rb'].map { |f| %["#{f}"] }.join(" ")
+    exec "ruby -S bundle exec rspec #{files_to_run}"
   end
 
   desc "start ENV", "Start Monk in the supplied environment"
