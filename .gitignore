@@ -1,10 +1,7 @@
 .bundle
 .redcar
 .DS_Store
-/config/settings.yml
-/config/redis/development.conf
-/config/redis/test.conf
-/db/redis/development
-/db/redis/test
-/tmp
-/webrat.log
+config/settings.yml
+config/redis/development.conf
+config/redis/test.conf
+tmp/*
