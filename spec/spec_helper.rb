@@ -30,12 +30,6 @@ Dir["spec/support/**/*.rb"].each {|f| require f}
 module Monk
   module Test
     module Methods
-      def setup
-        # Uncomment if you want to reset the database
-        # before each test.
-        # Ohm.flush
-      end
-  
       def app
         Main.new
       end
@@ -46,5 +40,6 @@ end
 RSpec.configure do |config|
   config.include Rack::Test::Methods
   config.include Monk::Test::Methods
+  config.before(:each) { Ohm.flush }
   config.mock_with :rspec
 end
