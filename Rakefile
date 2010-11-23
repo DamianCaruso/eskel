@@ -4,3 +4,5 @@ task :default => [:test]
 task :test do
   exec "thor monk:test"
 end
+
+task :spec => [:test]
