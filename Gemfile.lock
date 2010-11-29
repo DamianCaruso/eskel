@@ -35,11 +35,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  haml (= 2.2.22)
+  haml
   monk-glue!
-  ohm (= 0.1.0)
+  ohm
   rack-test (>= 0.5.3)
-  rdiscount (= 1.6.5)
-  redis (= 2.0.0)
-  rspec (>= 2.0.0.rc)
-  sinatra (= 1.0)
+  rdiscount
+  rspec (>= 2.0.1)
+  sinatra

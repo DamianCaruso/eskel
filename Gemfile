@@ -1,14 +1,13 @@
 source "http://rubygems.org"
 
-gem 'haml', '2.2.22'
-gem 'monk-glue', :git => 'git://github.com/monkrb/glue.git'
-gem 'ohm', '0.1.0'
+gem 'sinatra'
+gem 'monk-glue', :git => 'git://github.com/monkrb/glue.git', :require => 'monk/glue'
 
-gem 'redis', '2.0.0'
-gem 'rdiscount', '1.6.5'
-gem 'sinatra', '1.0'
+gem 'haml'
+gem 'ohm'
+gem 'rdiscount'
 
 group :test do
-  gem 'rspec', '>=2.0.0.rc'
+  gem 'rspec', '>=2.0.1'
   gem 'rack-test', '>=0.5.3'
 end

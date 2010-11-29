@@ -1,16 +1,18 @@
 ROOT_DIR = File.expand_path(File.dirname(__FILE__)) unless defined? ROOT_DIR
+RACK_ENV = ENV["RACK_ENV"] ||= "development" unless defined? RACK_ENV
 
 require "rubygems"
-require "bundler/setup"
-
-require "monk/glue"
-require "ohm"
-require "haml"
-require "sass"
+require "bundler"
+Bundler.setup(:default, RACK_ENV.to_sym)
+Bundler.require
 
 class Main < Monk::Glue
   set :app_file, __FILE__
   use Rack::Session::Cookie
+  
+  not_found do
+    haml :"404"
+  end
 end
 
 # Connect to redis database.

@@ -5,7 +5,7 @@ class Monk < Thor
   def test
     verify_config(:test)
     files_to_run = Dir['./spec/**/*_spec.rb'].map { |f| %["#{f}"] }.join(" ")
-    exec "ruby -S bundle exec rspec #{files_to_run}"
+    exec "ruby -S bundle exec rspec -c #{files_to_run}"
   end
 
   desc "start ENV", "Start Monk in the supplied environment"
