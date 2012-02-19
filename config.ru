@@ -1,6 +1,3 @@
-require "init"
+require File.expand_path("../init",__FILE__)
 
-Main.set :run, false
-Main.set :environment, :production
-
-run Main
+run Cuba

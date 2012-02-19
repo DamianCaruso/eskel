@@ -1,6 +1,5 @@
-class Main
-  get "/" do
-    @redis = monk_settings(:redis)
-    haml :home
+Home = Cuba.new do
+  on get do
+    res.write view("home")
   end
 end
