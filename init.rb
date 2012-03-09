@@ -12,12 +12,9 @@ require "rubygems"
 require "bundler"
 Bundler.setup(:default, RACK_ENV.to_sym)
 
-$LOAD_PATH.unshift root_path('lib')
-require 'eskel'
+$LOAD_PATH.unshift root_path("lib")
+require "eskel"
 
-if defined? Encoding
-  Encoding.default_external = Encoding::UTF_8
-  Encoding.default_internal = Encoding::UTF_8
-end
+Encoding.default_internal = Encoding.default_external = Encoding::UTF_8 if defined? Encoding
 
 require root_path("app/router")

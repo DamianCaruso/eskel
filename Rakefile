@@ -7,12 +7,28 @@ rescue Bundler::BundlerError => e
   $stderr.puts "Run `bundle install` to install missing gems"
   exit e.status_code
 end
-require 'rake'
 
-require 'rspec/core'
-require 'rspec/core/rake_task'
-RSpec::Core::RakeTask.new(:spec) do |spec|
-  spec.pattern = FileList['spec/**/*_spec.rb']
+require 'rake/testtask'
+
+Rake::TestTask.new do |t|
+  t.libs = ["lib", "spec"]
+  t.name = "spec:unit"
+  t.test_files = FileList['spec/unit/*_spec.rb']
+  t.verbose = true
+end
+
+Rake::TestTask.new do |t|
+  t.libs = ["lib", "spec"]
+  t.name = "spec:integration"
+  t.test_files = FileList['spec/integration/*_spec.rb']
+  t.verbose = true
+end
+
+Rake::TestTask.new do |t|
+  t.libs = ["lib", "spec"]
+  t.name = "spec"
+  t.test_files = FileList['spec/**/*_spec.rb']
+  t.verbose = true
 end
 
 task :default => :spec

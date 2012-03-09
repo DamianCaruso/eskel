@@ -1,12 +1,8 @@
-require "spec_helper"
+require 'integration_helper'
 
 describe "As a developer I want to see the homepage so I know this is correctly installed" do
-  def app
-    Cuba
-  end
-  
   it "should respond to /home" do
-    get '/home'    
-    last_response.should be_ok
+    visit '/home'
+    page.status_code.must_equal 200
   end
 end

@@ -1,7 +1,7 @@
 module Eskel
-  module Helpers
+  module Cuba
     def redirect(*args)
-      run Cuba.new { on(default) { res.redirect(*args) }}
+      run ::Cuba.new { on(default) { res.redirect(*args) }}
     end
     
     def settings

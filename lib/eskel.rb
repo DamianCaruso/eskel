@@ -18,5 +18,5 @@ module Eskel
     end
   end
   
-  autoload :Helpers, "eskel/helpers"
+  autoload :Cuba, "eskel/cuba"
 end
