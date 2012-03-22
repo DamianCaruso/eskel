@@ -10,10 +10,10 @@ GEM
       xpath (~> 0.1.4)
     childprocess (0.3.1)
       ffi (~> 1.0.6)
-    cuba (3.0.0.rc4)
+    cuba (3.0.0)
       rack
-    cuba-contrib (3.0.0.rc2)
-      cuba
+    cuba-contrib (3.0.0)
+      cuba (~> 3.0)
     daemons (1.1.5)
     eventmachine (0.12.10)
     ffi (1.0.11)
@@ -51,8 +51,8 @@ PLATFORMS
 
 DEPENDENCIES
   capybara (~> 1.1.2)
-  cuba (~> 3.0.0.rc4)
-  cuba-contrib (~> 3.0.0.rc2)
+  cuba (~> 3.0.0)
+  cuba-contrib (~> 3.0.0)
   foreman (~> 0.40.0)
   hashie (~> 1.2.0)
   mote (~> 0.2.0)

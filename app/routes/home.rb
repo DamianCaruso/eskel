@@ -1,7 +1,7 @@
-class Home < Cuba; end
-
-Home.define do
-  on get do
-    res.write view("home")
+class Home < Cuba
+  define do
+    on root do
+      res.write view("home")
+    end
   end
 end

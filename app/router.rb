@@ -18,7 +18,7 @@ Cuba.define do
     run Home
   end
   
-  on default do
+  on root do
     redirect "/home"
   end
 end

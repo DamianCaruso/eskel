@@ -2,8 +2,8 @@ source "http://rubygems.org"
 
 gem 'thin', '~> 1.3.1'
 
-gem 'cuba', '~> 3.0.0.rc4'
-gem 'cuba-contrib', '~> 3.0.0.rc2'
+gem 'cuba', '~> 3.0.0'
+gem 'cuba-contrib', '~> 3.0.0'
 gem 'mote', '~> 0.2.0'
 
 gem 'hashie', '~> 1.2.0'
