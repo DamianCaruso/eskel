@@ -1,6 +1,6 @@
 ENV["RACK_ENV"] = "test"
-require File.expand_path('../init', File.dirname(__FILE__))
+require File.expand_path('init', File.dirname(File.dirname(__FILE__)))
 require 'minitest/autorun'
 
 # Custom support files
-Dir[root_path('spec/support/**/*.rb')].each { |f| require f }
+Dir[Eskel.root('spec','support','**','*.rb')].each { |f| require f }
