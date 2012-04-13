@@ -14,12 +14,12 @@ module Eskel
   end
   
   def settings
-    @settings ||= Hashie::Mash.new(YAML.load_file(root_path("config/settings.yml"))[env.to_s])
+    @settings ||= Hashie::Mash.new(YAML.load_file(root("config","settings.yml"))[env.to_s])
   end
   
   def logger
     @logger ||= begin
-      logger = ::Logger.new(root_path("log/#{env}.log"))
+      logger = ::Logger.new(root("log","#{env}.log"))
       logger.level = ::Logger.const_get((settings.log_level || :warn).to_s.upcase)
       logger.datetime_format = "%Y-%m-%d %H:%M:%S"
       logger
