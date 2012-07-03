@@ -1,8 +1,4 @@
-# Setup bundler
-require "rubygems"
-require "bundler"
-Bundler.setup(:default, :development)
-
+require File.expand_path("config/boot", File.dirname(__FILE__))
 require 'rake/testtask'
 
 Rake::TestTask.new do |t|
@@ -27,3 +23,5 @@ Rake::TestTask.new do |t|
 end
 
 task :default => :spec
+
+Dir[Eskel.root("lib","tasks","**","*.rake")].each { |f| load f }

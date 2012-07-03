@@ -1,5 +1,5 @@
 ESKEL_ENV  = ENV["RACK_ENV"] ||= "development" unless defined?(ESKEL_ENV)
-ESKEL_ROOT = File.expand_path("..", __FILE__)  unless defined?(ESKEL_ROOT)
+ESKEL_ROOT = File.expand_path("..", File.dirname(__FILE__))  unless defined?(ESKEL_ROOT)
 
 # Setup bundler
 require "rubygems"
@@ -16,5 +16,5 @@ require "eskel"
 # Require initializers
 Dir[Eskel.root("config","initializers","**","*.rb")].each { |f| require f }
 
-# Require router
-require Eskel.root("app","router")
+# Require models
+Dir[Eskel.root("models","**","*.rb")].each { |f| require f }

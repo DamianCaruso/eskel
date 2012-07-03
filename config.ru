@@ -1,3 +1,2 @@
-require File.expand_path("init", File.dirname(__FILE__))
-
+require File.expand_path("main", File.dirname(__FILE__))
 run Cuba

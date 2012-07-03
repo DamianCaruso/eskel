@@ -1,6 +1,6 @@
-require 'hashie/mash'
 require 'logger'
 require 'yaml'
+require 'hashie/mash'
 
 module Eskel
   extend self
@@ -25,6 +25,4 @@ module Eskel
       logger
     end
   end
-  
-  autoload :Cuba, "eskel/cuba"
 end
