@@ -9,6 +9,7 @@ gem 'tilt', '~> 1.3.1'
 gem 'foreman', '~> 0.59.0'
 
 group :development, :test do
+  gem 'simplecov', '~> 0.6.4'
   gem 'capybara', '~> 1.1.2'
   gem 'rake', '~> 0.9.2.2'
 end

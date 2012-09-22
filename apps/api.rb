@@ -1,7 +1,9 @@
 class API < Cuba; end
 
 API.define do
+  res["Content-Type"] = 'application/json'
+
   on root do
-    res.write "api"
+    res.write ""
   end
 end
