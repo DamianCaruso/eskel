@@ -2,6 +2,7 @@ require File.expand_path("config/boot", File.dirname(__FILE__))
 require 'rack/protection'
 require 'cuba'
 require 'cuba/render'
+require 'eskel/assets'
 require 'helpers'
 
 Cuba.use Rack::MethodOverride
@@ -18,6 +19,10 @@ Cuba.settings[:render][:views] = Eskel.root("views")
 Dir[Eskel.root("apps","**","*.rb")].each { |f| require f }
 
 Cuba.define do
+  on "assets" do
+    run Eskel::Assets.new(Eskel.root)
+  end
+
   on "api" do
     run API
   end
