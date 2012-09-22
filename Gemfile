@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 gem 'thin', '~> 1.3.1'
-gem 'cuba', '~> 3.0.0'
+gem 'cuba', '~> 3.1.0'
 gem 'rack-protection', '~> 1.2.0'
 gem 'hashie', '~> 1.2.0'
 gem 'haml', '~> 3.1.7'

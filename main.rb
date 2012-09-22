@@ -8,11 +8,11 @@ Cuba.use Rack::MethodOverride
 Cuba.use Rack::Session::Cookie, key: "rack.session", secret: "change_me"
 Cuba.use Rack::Protection
 
-Cuba.settings[:views] = Eskel.root("views")
-Cuba.settings[:template_engine] = "haml"
-
 Cuba.plugin Helpers
 Cuba.plugin Cuba::Render
+
+Cuba.settings[:render][:template_engine] = "haml"
+Cuba.settings[:render][:views] = Eskel.root("views")
 
 # Require subapps
 Dir[Eskel.root("apps","**","*.rb")].each { |f| require f }
