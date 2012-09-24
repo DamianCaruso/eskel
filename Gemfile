@@ -7,7 +7,11 @@ gem 'hashie', '~> 1.2.0'
 gem 'haml', '~> 3.1.7'
 gem 'tilt', '~> 1.3.1'
 gem 'foreman', '~> 0.59.0'
-gem 'sprockets', '~> 2.6.0'
+
+# Assets
+gem 'sprockets',         '~> 2.6.0'
+gem 'sprockets-helpers', '~> 0.6.1'
+gem 'yui-compressor',    '~> 0.9.6'
 
 group :development, :test do
   gem 'simplecov', '~> 0.6.4'
