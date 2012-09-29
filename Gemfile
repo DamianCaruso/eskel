@@ -1,12 +1,14 @@
 source "http://rubygems.org"
 
-gem 'thin', '~> 1.3.1'
 gem 'cuba', '~> 3.1.0'
 gem 'rack-protection', '~> 1.2.0'
 gem 'hashie', '~> 1.2.0'
 gem 'haml', '~> 3.1.7'
 gem 'tilt', '~> 1.3.1'
 gem 'foreman', '~> 0.59.0'
+
+gem 'win32-open3',    :platforms => :mingw_18
+gem 'win32-open3-19', :platforms => :mingw_19
 
 # Assets
 gem 'sprockets',         '~> 2.6.0'
