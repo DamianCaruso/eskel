@@ -14,6 +14,7 @@ Cuba.plugin Cuba::Render
 Cuba.plugin Eskel::Cuba
 Cuba.plugin Eskel::Assets::Helpers
 
+require 'haml'
 Cuba.settings[:render][:template_engine] = "haml"
 Cuba.settings[:render][:views] = Eskel.root("views")
 
