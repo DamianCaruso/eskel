@@ -15,6 +15,3 @@ require "eskel"
 
 # Require initializers
 Dir[Eskel.root("config","initializers","**","*.rb")].each { |f| require f }
-
-# Require models
-Dir[Eskel.root("models","**","*.rb")].each { |f| require f }
