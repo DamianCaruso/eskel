@@ -1,0 +1,1 @@
+require 'rack/eskel/middleware/not_found'
