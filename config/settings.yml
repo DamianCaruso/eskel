@@ -1,5 +1,5 @@
 development: &defaults
-  log_level: warn
+  log_level: debug
   assets: &assets_config
     digest: false
     compress: false
@@ -9,6 +9,7 @@ test:
 
 production:
   <<: *defaults
+  log_level: warn
   assets:
     <<: *assets_config
     digest: true
