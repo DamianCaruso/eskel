@@ -20,6 +20,8 @@ namespace :assets do
     manifest.clean(keep)
   end
 
+  task :precompile => :compile
+
   def environment
     @environment ||= Eskel::Assets.environment
   end
