@@ -1,7 +1,6 @@
 require File.expand_path("config/boot", File.dirname(__FILE__))
 require 'rack'
 require 'rack/eskel'
-require 'rack/contrib/try_static'
 require 'rack/protection'
 require 'cuba'
 require 'cuba/render'
@@ -14,7 +13,7 @@ Cuba.use Rack::MethodOverride
 Cuba.use Rack::Session::Cookie, key: "eskel.session", secret: SecureRandom.hex(64)
 Cuba.use Rack::Protection
 Cuba.use Rack::Eskel::Middleware::NotFound, Eskel.root("public", "404.html")
-Cuba.use Rack::TryStatic, root: Eskel.root("public"), urls: %w[/]
+Cuba.use Rack::Eskel::Middleware::TryStatic, root: Eskel.root("public"), urls: %w[/]
 
 Cuba.plugin Cuba::Render
 Cuba.plugin Eskel::Cuba

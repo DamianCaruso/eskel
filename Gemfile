@@ -1,7 +1,6 @@
 source "http://rubygems.org"
 
 gem 'cuba',            '~> 3.1.0'
-gem 'rack-contrib',    '~> 1.1.0'
 gem 'rack-protection', '~> 1.2.0'
 gem 'hashie',          '~> 1.2.0'
 gem 'haml',            '~> 3.1.7'
