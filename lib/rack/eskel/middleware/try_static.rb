@@ -3,16 +3,15 @@ module Rack
     module Middleware
       
       class TryStatic
-        ALLOWED_VERBS = %w[GET HEAD]
-
         def initialize(app, options)
           @app = app
           @try = ['', *options.delete(:try)]
-          @static = ::Rack::Static.new(lambda { [404, {}, []] }, options)
+          @static = ::Rack::Static.new(Proc.new { [404, {}, []] }, options)
         end
 
         def call(env)
-          if ALLOWED_VERBS.include? env["REQUEST_METHOD"]
+          case env['REQUEST_METHOD']
+          when 'GET', 'HEAD'
             orig_path = env['PATH_INFO']
             found = nil
             @try.each do |path|

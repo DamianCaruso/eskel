@@ -1,5 +1,5 @@
 desc "Start IRB console"
-task :console do
+task :console => :environment do
   require 'irb'
   ARGV.clear
   IRB.start

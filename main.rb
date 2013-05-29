@@ -8,16 +8,20 @@ require 'eskel/cuba'
 require 'eskel/assets'
 require 'securerandom'
 
-Cuba.use Rack::ShowExceptions if Eskel.env == :development
-Cuba.use Rack::MethodOverride
-Cuba.use Rack::Session::Cookie, key: "eskel.session", secret: SecureRandom.hex(64)
-Cuba.use Rack::Protection
-Cuba.use Rack::Eskel::Middleware::NotFound, Eskel.root("public", "404.html")
-Cuba.use Rack::Eskel::Middleware::TryStatic, root: Eskel.root("public"), urls: %w[/]
-
 Cuba.plugin Cuba::Render
 Cuba.plugin Eskel::Cuba
 Cuba.plugin Eskel::Assets::Helpers
+
+Cuba.use Rack::ShowExceptions if Eskel.env == :development
+Cuba.use Rack::Eskel::Middleware::TryStatic, root: Eskel.root("public"), urls: %w[/]
+Cuba.use Rack::Runtime
+Cuba.use Rack::MethodOverride
+Cuba.use Rack::Session::Cookie, key: "_sess", secret: SecureRandom.hex(64)
+Cuba.use Rack::Protection
+Cuba.use Rack::Head
+Cuba.use Rack::ConditionalGet
+Cuba.use Rack::ETag
+Cuba.use Rack::Eskel::Middleware::NotFound, Eskel.root("public", "404.html")
 
 require 'haml'
 Cuba.settings[:render][:template_engine] = "haml"

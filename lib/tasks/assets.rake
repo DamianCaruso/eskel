@@ -1,21 +1,21 @@
-require 'sprockets'
-require 'eskel/assets'
-require 'logger'
-
 namespace :assets do
+  task :setup => :environment do 
+    require 'eskel/assets'
+  end
+
   desc "Compile assets"
-  task :compile do
+  task :compile => :setup do
     assets = environment.each_logical_path.select { |path| [ /\w+\.(?!js|css).+/, /application.(css|js)$/ ].detect { |r| r.match(path) } }
     manifest.compile(assets)
   end
 
   desc "Remove all assets"
-  task :clobber do
+  task :clobber => :setup do
     manifest.clobber
   end
 
   desc "Clean old assets"
-  task :clean do
+  task :clean => :setup do
     keep = ENV["keep"].nil? ? 2 : ENV["keep"].to_i
     manifest.clean(keep)
   end

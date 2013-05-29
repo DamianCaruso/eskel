@@ -1,6 +1,8 @@
+require 'sass'
 require 'sprockets'
 require 'sprockets-helpers'
-require 'yui/compressor'
+require 'sprockets-sass'
+require 'uglifier'
 
 module Eskel
   module Assets
@@ -17,11 +19,17 @@ module Eskel
       def self.included(base)
         Sprockets::Helpers.configure do |c|
           c.environment = Eskel::Assets.environment
+          c.expand      = Eskel.env == :development
+          c.protocol    = :relative
           c.manifest    = Sprockets::Manifest.new(Eskel::Assets.environment, Eskel.root('public','assets','manifest.json'))
           c.prefix      = '/assets'
           c.digest      = Eskel.settings.assets.digest
           c.public_path = './public'
         end
+      end
+
+      def asset_path(source, options = {})
+        env['PATH_INFO'].chomp('/') + super(source, options)
       end
     end
 
@@ -37,12 +45,8 @@ module Eskel
         append_path 'vendor/assets/stylesheets'
 
         if Eskel.settings.assets.compress
-          self.js_compressor  = YUI::JavaScriptCompressor.new(:munge => true)
-          self.css_compressor = YUI::CssCompressor.new
-        end
-
-        self.context_class.class_eval do
-          include ::Sprockets::Helpers
+          self.js_compressor  = Uglifier.new
+          self.css_compressor = Sprockets::Sass::Compressor.new
         end
       end
     end

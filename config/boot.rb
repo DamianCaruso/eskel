@@ -9,6 +9,10 @@ Bundler.setup(:default, ESKEL_ENV.to_sym)
 # Set enconding to UTF_8
 Encoding.default_internal = Encoding.default_external = Encoding::UTF_8 if defined?(Encoding)
 
+# Set environment
+require 'dotenv'
+Dotenv.load(".env.#{ESKEL_ENV}", ".env")
+
 # Require eskel
 $LOAD_PATH.unshift File.join(ESKEL_ROOT,"lib")
 require "eskel"
