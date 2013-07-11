@@ -1,13 +1,11 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 gem 'thin',            '~> 1.5'
 
 # Base
 gem 'cuba',            '~> 3.1'
-gem 'rack-protection', '~> 1.5'
-gem 'hashie',          '~> 1.2'
-gem 'haml',            '~> 4.0'
-gem 'tilt',            '~> 1.4'
+gem 'cuba-contrib',    '~> 3.1'
+gem 'mote',            '~> 1.1'
 gem 'foreman',         '~> 0.63'
 gem 'dotenv',          '~> 0.7'
 gem 'rake',            '~> 10.0'
@@ -23,5 +21,4 @@ gem 'therubyracer',      :platform => :ruby
 group :development, :test do
   gem 'minitest',    '~> 5.0'
   gem 'capybara',    '~> 2.1'
-  gem 'rerun',       '~> 0.8'
 end

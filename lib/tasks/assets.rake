@@ -1,11 +1,11 @@
 namespace :assets do
   task :setup => :environment do 
-    require 'eskel/assets'
+    require APP_ROOT.join('sprockets')
   end
 
   desc "Compile assets"
   task :compile => :setup do
-    assets = environment.each_logical_path.select { |path| [ /\w+\.(?!js|css).+/, /application.(css|js)$/ ].detect { |r| r.match(path) } }
+    assets = [ Proc.new { |path, fn| fn =~ /assets/ && !%w(.js .css).include?(File.extname(path)) }, /(?:\/|\\|\A)application\.(css|js)$/ ]
     manifest.compile(assets)
   end
 
@@ -15,15 +15,20 @@ namespace :assets do
   end
 
   desc "Clean old assets"
-  task :clean => :setup do
-    keep = ENV["keep"].nil? ? 2 : ENV["keep"].to_i
+  task :clean, [:keep] => :setup do
+    keep = args[:keep].nil? ? 2 : args[:keep].to_i
     manifest.clean(keep)
   end
 
   task :precompile => :compile
 
   def environment
-    @environment ||= Eskel::Assets.environment
+    @environment ||= begin
+      require 'uglifier'
+      $sprockets_env.js_compressor  = Uglifier.new
+      $sprockets_env.css_compressor = Sprockets::Sass::Compressor.new
+      $sprockets_env
+    end
   end
 
   def index
@@ -36,6 +41,6 @@ namespace :assets do
   end
 
   def manifest
-    @manifest ||= Sprockets::Manifest.new(index, Eskel.root("public","assets"))
+    @manifest ||= Sprockets::Manifest.new(index, APP_ROOT.join('public','assets'))
   end
 end

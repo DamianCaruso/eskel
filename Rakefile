@@ -7,9 +7,9 @@ Rake::TestTask.new do |t|
 end
 
 task :environment do
-  require File.expand_path('config/boot', File.dirname(__FILE__))
+  require File.expand_path('init', File.dirname(__FILE__))
 end
 
-task :default => :test
-
 Dir[File.join(File.dirname(__FILE__), 'lib', 'tasks', '**', '*.rake')].each { |f| load f }
+
+task :default => :test

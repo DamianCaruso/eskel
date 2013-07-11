@@ -1,16 +1,13 @@
-development: &defaults
-  log_level: debug
-  assets: &assets_config
-    digest: false
-    compress: false
+---
+:base: &defaults
+  :log_level: warn
 
-test:
+:development: &defaults
+  <<: *defaults
+  :log_level: debug
+
+:test:
   <<: *defaults
 
-production:
+:production:
   <<: *defaults
-  log_level: warn
-  assets:
-    <<: *assets_config
-    digest: true
-    compress: true
