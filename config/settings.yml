@@ -2,7 +2,7 @@
 :base: &defaults
   :log_level: warn
 
-:development: &defaults
+:development:
   <<: *defaults
   :log_level: debug
 
