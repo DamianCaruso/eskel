@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'cuba',    '~> 3.3.0'
   s.add_dependency 'dotenv',  '~> 1.0.2'
+  s.add_dependency 'tilt',    '~> 2.0.1'
 
   s.add_development_dependency 'rake'
   s.add_development_dependency 'minitest'

@@ -1,5 +1,13 @@
+require 'cuba/render'
+
 module Eskel
   module ApplicationDependencies
+    def self.setup(app)
+      app.plugin Cuba::Render
+      app.settings[:render] ||= {}
+      app.settings[:render][:views] = File.expand_path('app/views', Dir.pwd)
+    end
+
     module ClassMethods
       def dependencies
         [
