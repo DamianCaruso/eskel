@@ -5,11 +5,6 @@ require 'eskel/logging'
 require 'eskel/application'
 require 'eskel/loader'
 
-silence_warnings do
-  Encoding.default_external = Encoding::UTF_8
-  Encoding.default_internal = Encoding::UTF_8
-end
-
 module Eskel
   extend Loader
   extend Logging
