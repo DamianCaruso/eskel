@@ -40,6 +40,12 @@ module Eskel
       @_dependency_paths ||= default_dependency_paths
     end
 
+    def load_tasks
+      require 'eskel/tasks'
+      load 'eskel/tasks/assets.rake' if defined?(Eskel::Assets)
+      Dir["#{root}/**/*.rake"].each { |f| load f }
+    end
+
   private
 
     def default_dependency_paths
