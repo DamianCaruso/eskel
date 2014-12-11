@@ -1,4 +1,5 @@
 require 'eskel/pipeline'
+require 'uri'
 
 module Eskel
   module Assets
@@ -7,9 +8,16 @@ module Eskel
     end
 
     def asset_path(path)
-      return join(path, version) if version
-      
-      path
+      path = join(path, version) if version
+      host = settings[:assets][:asset_host]
+
+      if host.respond_to?(:call)
+        base_url = host.call(path, req)
+      else
+        base_url = host.to_s
+      end
+
+      base_url.empty? ? join('/', path) : URI.join(base_url, path).to_s
     end
 
     def image_path(path)
@@ -26,8 +34,8 @@ module Eskel
 
   private
 
-    def join(prefix, path)
-      File.join(prefix, path)
+    def join(*args)
+      File.join(*args)
     end
 
     def version
